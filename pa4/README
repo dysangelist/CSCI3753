@@ -1,0 +1,7 @@
+Seems to be working after it decided to stop working at 11:40 D:
+
+to run:
+
+make
+
+./fusec <key> <source> <target>

@@ -1,0 +1,105 @@
+#/!/bin/bash
+
+#File: testscript
+#Author: Andy Sayler
+#Project: CSCI 3753 Programming Assignment 3
+#Create Date: 2012/03/09
+#Modify Date: 2012/03/21
+#Description:
+#	A simple bash script to run a signle copy of each test case
+#	and gather the relevent data.
+
+TIMEFORMAT="wall=%e user=%U system=%S CPU=%P i-switched=%c v-switched=%w"
+MAKE="make -s"
+
+echo Building code...
+$MAKE clean
+$MAKE
+
+echo Starting test runs...
+
+echo cpu tests
+
+
+
+echo CPU w/ SCHED_OTHER and LOW
+/usr/bin/time -f "$TIMEFORMAT" sudo ./pi-sched $ITERATIONS SCHED_OTHER LOW > /dev/null
+
+echo CPU w/ SCHED_FIFO and LOW
+/usr/bin/time -f "$TIMEFORMAT" sudo ./pi-sched $ITERATIONS SCHED_FIFO LOW > /dev/null
+
+echo CPU w/ SCHED_RR and LOW
+/usr/bin/time -f "$TIMEFORMAT" sudo ./pi-sched $ITERATIONS SCHED_RR LOW > /dev/null
+
+echo CPU w/ SCHED_OTHER and MED
+/usr/bin/time -f "$TIMEFORMAT" sudo ./pi-sched $ITERATIONS SCHED_OTHER MED > /dev/null
+
+echo CPU w/ SCHED_FIFO and MED
+/usr/bin/time -f "$TIMEFORMAT" sudo ./pi-sched $ITERATIONS SCHED_FIFO MED > /dev/null
+
+echo CPU w/ SCHED_RR and MED
+/usr/bin/time -f "$TIMEFORMAT" sudo ./pi-sched $ITERATIONS SCHED_RR MED > /dev/null
+
+echo CPU w/ SCHED_OTHER and HI
+/usr/bin/time -f "$TIMEFORMAT" sudo ./pi-sched $ITERATIONS SCHED_OTHER HI > /dev/null
+
+echo CPU w/ SCHED_FIFO and HI
+/usr/bin/time -f "$TIMEFORMAT" sudo ./pi-sched $ITERATIONS SCHED_FIFO HI > /dev/null
+
+echo CPU w/ SCHED_RR and HI
+/usr/bin/time -f "$TIMEFORMAT" sudo ./pi-sched $ITERATIONS SCHED_RR HI > /dev/null
+
+echo IO w/ SCHED_OTHER and LOW
+/usr/bin/time -f "$TIMEFORMAT" sudo ./rw $ITERATIONS SCHED_OTHER LOW > /dev/null
+
+echo IO w/ SCHED_FIFO and LOW
+/usr/bin/time -f "$TIMEFORMAT" sudo ./rw $ITERATIONS SCHED_FIFO LOW > /dev/null
+
+echo IO w/ SCHED_RR and LOW
+/usr/bin/time -f "$TIMEFORMAT" sudo ./rw $ITERATIONS SCHED_RR LOW > /dev/null
+
+echo IO w/ SCHED_OTHER and MED
+/usr/bin/time -f "$TIMEFORMAT" sudo ./rw $ITERATIONS SCHED_OTHER MED > /dev/null
+
+echo IO w/ SCHED_FIFO and MED
+/usr/bin/time -f "$TIMEFORMAT" sudo ./rw $ITERATIONS SCHED_FIFO MED > /dev/null
+
+echo IO w/ SCHED_RR and MED
+/usr/bin/time -f "$TIMEFORMAT" sudo ./rw $ITERATIONS SCHED_RR MED > /dev/null
+
+echo IO w/ SCHED_OTHER and HI
+/usr/bin/time -f "$TIMEFORMAT" sudo ./rw $ITERATIONS SCHED_OTHER HI > /dev/null
+
+echo IO w/ SCHED_FIFO and HI
+/usr/bin/time -f "$TIMEFORMAT" sudo ./rw $ITERATIONS SCHED_FIFO HI > /dev/null
+
+echo IO w/ SCHED_OTHER and HI
+/usr/bin/time -f "$TIMEFORMAT" sudo ./rw $ITERATIONS SCHED_RR HI > /dev/null
+
+echo MIX w/ SCHED_OTHER and LOW
+/usr/bin/time -f "$TIMEFORMAT" sudo ./mix $ITERATIONS SCHED_OTHER LOW > /dev/null
+
+echo CPU w/ SCHED_OTHER and LOW
+/usr/bin/time -f "$TIMEFORMAT" sudo ./mix $ITERATIONS SCHED_FIFO LOW > /dev/null
+
+echo MIX w/ SCHED_OTHER and LOW
+/usr/bin/time -f "$TIMEFORMAT" sudo ./mix $ITERATIONS SCHED_RR LOW > /dev/null
+
+echo MIX w/ SCHED_OTHER and MED
+/usr/bin/time -f "$TIMEFORMAT" sudo ./mix $ITERATIONS SCHED_OTHER MED > /dev/null
+
+echo MIX w/ SCHED_FIFO and MED
+/usr/bin/time -f "$TIMEFORMAT" sudo ./mix $ITERATIONS SCHED_FIFO MED > /dev/null
+
+echo MIX w/ SCHED_OTHER and MED
+/usr/bin/time -f "$TIMEFORMAT" sudo ./mix $ITERATIONS SCHED_RR MED > /dev/null
+
+echo MIX w/ SCHED_OTHER and HI
+/usr/bin/time -f "$TIMEFORMAT" sudo ./mix $ITERATIONS SCHED_OTHER HI > /dev/null
+
+echo MIX w/ SCHED_FIFO and HI
+/usr/bin/time -f "$TIMEFORMAT" sudo ./mix $ITERATIONS SCHED_FIFO HI > /dev/null
+
+echo MIX w/ SCHED_RR and HI
+/usr/bin/time -f "$TIMEFORMAT" sudo ./mix $ITERATIONS SCHED_RR HI > /dev/null
+
